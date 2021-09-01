@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApinapiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('napi', [ApinapiController::class, 'index'])->name('napi');
+Route::post('search', [ApinapiController::class, 'search'])->name('search');
