@@ -18,7 +18,13 @@ class CreateNapisTable extends Migration
             $table->string('name');
             $table->integer('idJail')->unsigned();
             $table->string('case');
-            $table->string('status');
+            $table->string('pk');
+            $table->string('type');
+            $table->date('disposition');
+            $table->integer('number_tpp');
+            $table->date('date_tpp');
+            $table->string('status')->default('Diproses');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
         Schema::table('napis', function (Blueprint $table) {

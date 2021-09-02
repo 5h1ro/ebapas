@@ -8,19 +8,20 @@
                     <div class="col-12">
                         <div class="card">
                             <form method="POST" action="{{ route('data.store') }}" class="needs-validation" novalidate="">
-                                {{ csrf_field() }}
-                                <div class="card-header">
-                                    <h4>Tambah Data</h4>
-                                </div>
+                                @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label>Nama</label>
                                                 <input type="text" name="name" class="form-control">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
                                             <div class="form-group">
-                                                <label>Asal Lapas</label>
+                                                <label>Asal Permintaan</label>
                                                 <select class="form-control" name="idJail">
                                                     @foreach ($jail as $from)
                                                         <option value="{{ $from->id }}">
@@ -35,17 +36,64 @@
                                                 <label>Kasus</label>
                                                 <input type="text" name="case" class="form-control">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Nama PK</label>
+                                                <input type="text" name="pk" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jenis Litmas</label>
+                                                <input type="text" name="type" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tanggal Disposisi</label>
+                                                <input type="date" class="form-control" name="disposition">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>No TPP</label>
+                                                <input type="text" name="number_tpp" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tanggal TPP</label>
+                                                <input type="date" class="form-control" name="date_tpp">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Keterangan</label>
+                                                <input type="text" name="description" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control" name="status">
-                                                    <option>Diterima</option>
-                                                    <option>Diproses</option>
+                                                    <option value="Diterima">
+                                                        Diterima
+                                                    </option>
+                                                    <option value="Diproses">
+                                                        Diproses
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="card-footer text-right">
+                                <div class="text-right">
                                     <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                     <button class="btn btn-secondary" type="reset">Reset</button>
                                 </div>

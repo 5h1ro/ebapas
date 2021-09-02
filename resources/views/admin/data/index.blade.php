@@ -15,9 +15,16 @@
                                     <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th>Nama</th>
-                                                <th>Asal Lapas</th>
+                                                <th>No</th>
+                                                <th>Tanggal Disposisi</th>
+                                                <th>Asal Permintaan</th>
+                                                <th>Nama Klien</th>
                                                 <th>Kasus</th>
+                                                <th>Nama PK</th>
+                                                <th>Jenis Litmas</th>
+                                                <th>No TPP</th>
+                                                <th>Tanggal TPP</th>
+                                                <th>Keterangan</th>
                                                 <th>Status</th>
                                                 <th class="col-2">action</th>
                                             </tr>
@@ -25,9 +32,16 @@
                                         <tbody>
                                             @foreach ($napi as $data)
                                                 <tr>
-                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $data->disposition }}</td>
                                                     <td>{{ $data->jail->name }}</td>
+                                                    <td>{{ $data->name }}</td>
                                                     <td>{{ $data->case }}</td>
+                                                    <td>{{ $data->pk }}</td>
+                                                    <td>{{ $data->type }}</td>
+                                                    <td>{{ $data->number_tpp }}</td>
+                                                    <td>{{ $data->date_tpp }}</td>
+                                                    <td>{{ $data->description }}</td>
                                                     <td>{{ $data->status }}</td>
                                                     <td class="col-2">
                                                         <button class="btn btn-icon icon-left btn-primary"
@@ -72,14 +86,18 @@
                             @csrf
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label>Nama</label>
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ $data->name }}">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
                                         <div class="form-group">
-                                            <label>Asal Lapas</label>
+                                            <label>Asal Permintaan</label>
                                             <select class="form-control" name="idJail">
                                                 @foreach ($jail as $from)
                                                     @if ($from->id == $data->idJail)
@@ -101,6 +119,54 @@
                                             <input type="text" name="case" class="form-control"
                                                 value="{{ $data->case }}">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Nama PK</label>
+                                            <input type="text" name="pk" class="form-control"
+                                                value="{{ $data->pk }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jenis Litmas</label>
+                                            <input type="text" name="type" class="form-control"
+                                                value="{{ $data->type }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Tanggal Disposisi</label>
+                                            <input type="date" class="form-control" value="{{ $data->disposition }}"
+                                                name="disposition">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>No TPP</label>
+                                            <input type="text" name="number_tpp" class="form-control"
+                                                value="{{ $data->number_tpp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Tanggal TPP</label>
+                                            <input type="date" class="form-control" value="{{ $data->date_tpp }}"
+                                                name="date_tpp">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Keterangan</label>
+                                            <input type="text" name="description" class="form-control"
+                                                value="{{ $data->description }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control" name="status">
@@ -123,6 +189,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="text-right">
                                 <button class="btn btn-primary mr-1" type="submit">Submit</button>

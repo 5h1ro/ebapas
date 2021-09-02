@@ -14,24 +14,29 @@ class DataController extends Controller
     {
         $user = Auth::user();
         $napi = Napi::all();
-        $jail = Jail::all();
+        $jail = Jail::all()->sortBy("name");
         return view('admin.data.index', compact('user', 'napi', 'jail'));
     }
 
     public function add()
     {
         $user = Auth::user();
-        $jail = Jail::all();
+        $jail = Jail::all()->sortBy("name");
         return view('admin.data.add', compact('user', 'jail'));
     }
 
     public function store(Request $request)
     {
         $napi = new Napi;
-        $napi->name     = $request->name;
-        $napi->idJail   = $request->idJail;
-        $napi->case     = $request->case;
-        $napi->status   = $request->status;
+        $napi->name        = $request->name;
+        $napi->idJail      = $request->idJail;
+        $napi->case        = $request->case;
+        $napi->type        = $request->type;
+        $napi->disposition = $request->disposition;
+        $napi->number_tpp  = $request->number_tpp;
+        $napi->date_tpp    = $request->date_tpp;
+        $napi->status      = $request->status;
+        $napi->description = $request->description;
         $napi->save();
 
         return redirect()->to('admin');
@@ -40,10 +45,15 @@ class DataController extends Controller
     public function update(Request $request, $id)
     {
         $napi = Napi::find($id);
-        $napi->name     = $request->name;
-        $napi->idJail   = $request->idJail;
-        $napi->case     = $request->case;
-        $napi->status   = $request->status;
+        $napi->name        = $request->name;
+        $napi->idJail      = $request->idJail;
+        $napi->case        = $request->case;
+        $napi->type        = $request->type;
+        $napi->disposition = $request->disposition;
+        $napi->number_tpp  = $request->number_tpp;
+        $napi->date_tpp    = $request->date_tpp;
+        $napi->status      = $request->status;
+        $napi->description = $request->description;
         $napi->save();
 
         return redirect()->to('data');

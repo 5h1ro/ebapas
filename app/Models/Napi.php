@@ -21,7 +21,13 @@ class Napi extends Model
         'name',
         'idJail',
         'case',
-        'status'
+        'pk',
+        'type',
+        'disposition',
+        'number_tpp',
+        'date_tpp',
+        'status',
+        'description'
     ];
 
     public function jail()
