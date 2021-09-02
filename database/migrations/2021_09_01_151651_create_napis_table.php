@@ -16,10 +16,13 @@ class CreateNapisTable extends Migration
         Schema::create('napis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('from');
+            $table->integer('idJail')->unsigned();
             $table->string('case');
             $table->string('status');
             $table->timestamps();
+        });
+        Schema::table('napis', function (Blueprint $table) {
+            $table->foreign('idJail', 'idJail_fk_01')->references('id')->on('jails');
         });
     }
 

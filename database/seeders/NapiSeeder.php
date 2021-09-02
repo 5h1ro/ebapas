@@ -16,7 +16,7 @@ class NapiSeeder extends Seeder
     {
         $user = Napi::create([
             'name'             => 'Bima Andriansyah',
-            'from'             => 'Lapas Madiun',
+            'idJail'           => '1',
             'case'             => 'Hacking',
             'status'           => 'Diproses'
         ]);
@@ -24,7 +24,7 @@ class NapiSeeder extends Seeder
 
         $user = Napi::create([
             'name'             => 'Gilang',
-            'from'             => 'Lapas Magetan',
+            'idJail'           => '2',
             'case'             => 'Pencurian 3 permen milkita',
             'status'           => 'Diproses'
         ]);
@@ -32,7 +32,7 @@ class NapiSeeder extends Seeder
 
         $user = Napi::create([
             'name'             => 'Nadia Irsyan',
-            'from'             => 'Lapas Ngawi',
+            'idJail'           => '3',
             'case'             => 'Pelanggaran Hak Asasi Kucing',
             'status'           => 'Diproses'
         ]);

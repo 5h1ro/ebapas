@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jail;
 use App\Models\Napi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -60,5 +61,10 @@ class ApinapiController extends Controller
                 'data'      => json_decode($napi),
             ));
         }
+    }
+
+    public function jail()
+    {
+        return Jail::all();
     }
 }

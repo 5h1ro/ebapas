@@ -19,8 +19,13 @@ class Napi extends Model
 
     protected $fillable = [
         'name',
-        'from',
+        'idJail',
         'case',
         'status'
     ];
+
+    public function jail()
+    {
+        return $this->belongsTo(Jail::class, 'idJail');
+    }
 }
