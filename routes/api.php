@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('index', [ApinapiController::class, 'index']);
 Route::post('search', [ApinapiController::class, 'search']);
+Route::get('search={id}', [ApinapiController::class, 'getsearch']);
 Route::get('jail', [ApinapiController::class, 'jail']);

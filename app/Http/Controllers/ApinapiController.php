@@ -67,4 +67,21 @@ class ApinapiController extends Controller
     {
         return Jail::all();
     }
+
+    public function getsearch($name)
+    {
+        $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
+        if ($napi->isEmpty()) {
+            return Response::json(array(
+                'success'   => false,
+                'message'   => 'Gaenek Cok Datane',
+            ), 404);
+        } else {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($napi),
+            ));
+        }
+    }
 }
