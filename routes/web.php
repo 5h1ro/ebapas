@@ -28,7 +28,7 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function (Request $request) {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/regis', function (Request $request) {
