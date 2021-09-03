@@ -11,7 +11,20 @@ class ApinapiController extends Controller
 {
     public function index()
     {
-        return Napi::all();
+        $napi = Napi::all();
+        if ($napi->isEmpty()) {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
+            ), 404);
+        } else {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($napi),
+            ));
+        }
     }
 
     public function create(Request $request)
@@ -51,8 +64,9 @@ class ApinapiController extends Controller
         $napi = Napi::where('name', 'LIKE', '%' . $request->name . '%')->get();
         if ($napi->isEmpty()) {
             return Response::json(array(
-                'success'   => false,
-                'message'   => 'Gaenek Cok Datane',
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
             ), 404);
         } else {
             return Response::json(array(
@@ -65,23 +79,69 @@ class ApinapiController extends Controller
 
     public function jail()
     {
-        return Jail::all();
-    }
-
-    public function getsearch($name)
-    {
-        $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
-        if ($napi->isEmpty()) {
+        $jail = Jail::all();
+        if ($jail->isEmpty()) {
             return Response::json(array(
-                'success'   => false,
-                'message'   => 'Gaenek Cok Datane',
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
             ), 404);
         } else {
             return Response::json(array(
                 'success'   => true,
                 'message'   => '',
-                'data'      => json_decode($napi),
+                'data'      => json_decode($jail),
             ));
+        }
+    }
+
+    public function getsearch($id, $name)
+    {
+        if ($id == " ") {
+            $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
+            if ($napi->isEmpty()) {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => []
+                ), 404);
+            } else {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => json_decode($napi),
+                ));
+            }
+        } elseif ($name == " ") {
+            $napi = Napi::where('idJail', '=', $id)->get();
+            if ($napi->isEmpty()) {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => []
+                ), 404);
+            } else {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => json_decode($napi),
+                ));
+            }
+        } else {
+            $napi = Napi::where([['idJail', '=', $id], ['name', 'LIKE', '%' . $name . '%']])->get();
+            if ($napi->isEmpty()) {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => []
+                ), 404);
+            } else {
+                return Response::json(array(
+                    'success'   => true,
+                    'message'   => '',
+                    'data'      => json_decode($napi),
+                ));
+            }
         }
     }
 }
