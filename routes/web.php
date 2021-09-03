@@ -4,9 +4,17 @@ use App\Http\Controllers\ApinapiController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\HomeController;
+use App\Models\User;
+use Illuminate\Http\Request;
+// use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +27,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return view('welcome');
+});
+
+Route::get('/regis', function (Request $request) {
+    $random = Str::random(10);
+    $session_id = Session::getId();
+    $value = $session_id . $random . mt_rand(0000, 9999);
+    $user = User::find(1);
+    $user->uid = $value;
+    $user->save();
+
+    // $response = new Response();
+    // $response->headers->clearCookie('ebima');
+    // $response->send();
+    return response()->view('welcome')->withCookie(cookie('ebima', $value));
 });
 
 Route::get('/logout', function () {
     Auth::logout();
     return Redirect::to('/');
 })->name('logout');
+
+Route::get('/error', function () {
+    return view('welcome');
+})->name('error');
+
+
 
 Route::get('napi', [ApinapiController::class, 'index'])->name('napi');
 Route::post('search', [ApinapiController::class, 'search'])->name('search');
@@ -36,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::middleware(['admin'])->group(function () {
+        Route::get('cookie', [HomeController::class, 'getcookie']);
         Route::get('admin', [AdminController::class, 'index']);
 
         Route::get('/data', [DataController::class, 'index'])->name('data');

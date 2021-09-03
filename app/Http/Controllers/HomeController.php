@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -22,13 +25,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $role = Auth::user()->role;
-        if ($role == "admin") {
+        $uid  = Auth::user()->uid;
+        $value = $request->cookie('ebima');
+        if ($role == "admin" && $uid == $value) {
             return redirect()->to('admin');
         } else {
-            return redirect()->to('logout');
+            Auth::logout();
+            return redirect()->route('error')->with('alert', 'Device tidak terdaftar');
         }
     }
 }
