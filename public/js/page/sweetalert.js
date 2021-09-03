@@ -69,7 +69,3 @@ $("#swal-5").click(function() {
 function error() {
     swal('Error', 'Device Tidak Terdaftar', 'error');
 }
-
-function error() {
-    swal('Success', 'Device Berhasil Didaftarkan', 'success');
-}
