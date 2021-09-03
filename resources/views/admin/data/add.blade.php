@@ -87,6 +87,12 @@
                                                     <option value="Diproses">
                                                         Diproses
                                                     </option>
+                                                    <option value="Terkirim">
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan">
+                                                        Dalam Pembimbingan
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>

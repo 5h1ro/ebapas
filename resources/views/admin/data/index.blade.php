@@ -177,12 +177,50 @@
                                                     <option value="Diproses">
                                                         Diproses
                                                     </option>
-                                                @else
+                                                    <option value="Terkirim">
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan">
+                                                        Dalam Pembimbingan
+                                                    </option>
+                                                @elseif ($data->status == 'Diproses')
                                                     <option value="Diterima">
                                                         Diterima
                                                     </option>
                                                     <option value="Diproses" selected>
                                                         Diproses
+                                                    </option>
+                                                    <option value="Terkirim">
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan">
+                                                        Dalam Pembimbingan
+                                                    </option>
+                                                @elseif ($data->status == 'Terkirim')
+                                                    <option value="Diterima">
+                                                        Diterima
+                                                    </option>
+                                                    <option value="Diproses">
+                                                        Diproses
+                                                    </option>
+                                                    <option value="Terkirim" selected>
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan">
+                                                        Dalam Pembimbingan
+                                                    </option>
+                                                @else
+                                                    <option value="Diterima">
+                                                        Diterima
+                                                    </option>
+                                                    <option value="Diproses">
+                                                        Diproses
+                                                    </option>
+                                                    <option value="Terkirim">
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan" selected>
+                                                        Dalam Pembimbingan
                                                     </option>
                                                 @endif
                                             </select>

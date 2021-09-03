@@ -13,7 +13,7 @@ class DataController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $napi = Napi::all();
+        $napi = Napi::all()->sortBy('number_tpp');
         $jail = Jail::all()->sortBy("name");
         return view('admin.data.index', compact('user', 'napi', 'jail'));
     }
@@ -33,6 +33,7 @@ class DataController extends Controller
         $napi->case        = $request->case;
         $napi->type        = $request->type;
         $napi->disposition = $request->disposition;
+        $napi->pk          = $request->pk;
         $napi->number_tpp  = $request->number_tpp;
         $napi->date_tpp    = $request->date_tpp;
         $napi->status      = $request->status;
@@ -50,6 +51,7 @@ class DataController extends Controller
         $napi->case        = $request->case;
         $napi->type        = $request->type;
         $napi->disposition = $request->disposition;
+        $napi->pk          = $request->pk;
         $napi->number_tpp  = $request->number_tpp;
         $napi->date_tpp    = $request->date_tpp;
         $napi->status      = $request->status;
