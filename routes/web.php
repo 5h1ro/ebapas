@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
+use App\Models\Jail;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use Illuminate\Http\Response;
@@ -39,10 +40,11 @@ Route::get('/regis', function (Request $request) {
     $user->uid = $value;
     $user->save();
 
+    $jail = Jail::all()->sortBy("name");
     // $response = new Response();
     // $response->headers->clearCookie('ebima');
     // $response->send();
-    return response()->view('index')->withCookie(cookie('ebima', $value));
+    return response()->view('index', compact('jail'))->withCookie(cookie('ebima', $value));
 });
 
 Route::get('/logout', function () {
