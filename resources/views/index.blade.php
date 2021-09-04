@@ -54,8 +54,8 @@
                     </div>
                     <div class="table-full-width table-responsive overflow-hidden">
                         <div class="row">
-                            <div class="hover-zoom w-25">
-                                <img class="img-fluid align-items-sm-center"
+                            <div class="hover-zoom ml-4 w-25">
+                                <img class="img-fluid align-items-sm-center rounded-lg"
                                     src="{{ asset('img/team/marketing-team-01.jpg') }}" alt="investor">
                             </div>
                             <div class="text-white ml-3" id="dataClient">
