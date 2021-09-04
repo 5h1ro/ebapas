@@ -62,10 +62,11 @@ $("#swal-8").click(function() {
 });
 
 
-$("#swal-5").click(function() {
-    swal('Good Job', 'You clicked the button!', 'error');
-});
 
 function error() {
     swal('Error', 'Device Tidak Terdaftar', 'error');
+}
+
+function empty() {
+    swal('Error', 'Data Tidak Ditemukan', 'error');
 }

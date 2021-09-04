@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApinapiController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
+use App\Http\Controllers\Admin\JailController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Models\Jail;
@@ -29,7 +30,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', [GuestController::class, 'index']);
+Route::get('/', [GuestController::class, 'index'])->name('index');
 Route::get('/load/name={name}&jail={id}', [GuestController::class, 'load']);
 
 Route::get('/regis', function (Request $request) {
@@ -61,18 +62,26 @@ Route::get('/error', function () {
 Route::get('napi', [ApinapiController::class, 'index'])->name('napi');
 Route::post('search', [ApinapiController::class, 'search'])->name('search');
 
+Route::get('/autocomplete', [GuestController::class, 'ai']);
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::middleware(['admin'])->group(function () {
         Route::get('cookie', [HomeController::class, 'getcookie']);
-        Route::get('admin', [AdminController::class, 'index']);
+        Route::get('admin', [AdminController::class, 'index'])->name('admin');
 
         Route::get('/data', [DataController::class, 'index'])->name('data');
         Route::get('/data/add', [DataController::class, 'add'])->name('data.add');
         Route::post('/data/store', [DataController::class, 'store'])->name('data.store');
         Route::get('/data/delete/{id}', [DataController::class, 'delete'])->name('data.delete');
         Route::post('/data/update/{id}', [DataController::class, 'update'])->name('data.update');
+
+
+        Route::get('/jail', [JailController::class, 'index'])->name('jail');
+        Route::get('/jail/add', [JailController::class, 'add'])->name('jail.add');
+        Route::post('/jail/store', [JailController::class, 'store'])->name('jail.store');
+        Route::get('/jail/delete/{id}', [JailController::class, 'delete'])->name('jail.delete');
+        Route::post('/jail/update/{id}', [JailController::class, 'update'])->name('jail.update');
     });
 });

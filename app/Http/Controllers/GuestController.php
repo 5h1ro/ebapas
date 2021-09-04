@@ -17,7 +17,19 @@ class GuestController extends Controller
 
     public function load($name, $idJail)
     {
-        $napi = Napi::where([['idJail', '=', $idJail], ['name', 'LIKE', '%' . $name . '%']])->first();
-        return view('client.client', compact('napi'));
+        if ($idJail == "0") {
+            $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->first();
+            return view('client.client', compact('napi'));
+        } else {
+            $napi = Napi::where([['idJail', '=', $idJail], ['name', 'LIKE', '%' . $name . '%']])->first();
+            return view('client.client', compact('napi'));
+        }
+    }
+
+    public function ai(Request $request)
+    {
+        $query = $request->get('query');
+        $filterResult = Napi::where('name', 'LIKE', '%' . $query . '%')->get();
+        return response()->json($filterResult);
     }
 }
