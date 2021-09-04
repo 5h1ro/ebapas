@@ -1,12 +1,12 @@
 @if (isset($napi))
     <div class="row">
-        <div class="col-5 col-sm-5 col-md-12 col-lg-4 hover-zoom mb-3 row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-7 col-lg-12">
+        <div class="col-12 col-sm-8 col-md-12 col-lg-4 hover-zoom mb-3">
+            <div class="col-8 col-sm-12 col-md-7 col-lg-12 image-klien">
                 <img class="img-fluid align-items-sm-center rounded-lg" src="{{ asset('img/user.png') }}"
                     alt="investor">
             </div>
         </div>
-        <div class="col-6 col-sm-6 col-md-auto col-lg-8 col-xl-auto text-white">
+        <div class="col-12 col-sm-8 col-md-auto col-lg-8 col-xl-auto text-white">
             <table class="___class_+?38___">
                 <tbody>
                     <tr>
