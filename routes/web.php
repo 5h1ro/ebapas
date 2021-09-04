@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApinapiController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,9 +28,8 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function (Request $request) {
-    return view('index');
-});
+Route::get('/', [GuestController::class, 'index']);
+Route::get('/load/name={name}&jail={id}', [GuestController::class, 'load']);
 
 Route::get('/regis', function (Request $request) {
     $random = Str::random(10);
@@ -42,7 +42,7 @@ Route::get('/regis', function (Request $request) {
     // $response = new Response();
     // $response->headers->clearCookie('ebima');
     // $response->send();
-    return response()->view('welcome')->withCookie(cookie('ebima', $value));
+    return response()->view('index')->withCookie(cookie('ebima', $value));
 });
 
 Route::get('/logout', function () {
