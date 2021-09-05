@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse ">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link smooth" data-scroll href="{{ route('admin') }}">Admin</a>
+                <a class="nav-link smooth" data-scroll href="#download">Download</a>
             </li>
         </ul>
     </div>
