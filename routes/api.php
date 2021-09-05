@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('index', [ApinapiController::class, 'index']);
 Route::post('search', [ApinapiController::class, 'search']);
-Route::get('jail={id}&name={name}', [ApinapiController::class, 'getsearch']);
+Route::get('jail={id}&name={name}', [ApinapiController::class, 'getsearch'])->middleware('throttle:1200,1');
 Route::get('jail', [ApinapiController::class, 'jail']);

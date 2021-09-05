@@ -27,6 +27,8 @@ class DataController extends Controller
 
     public function store(Request $request)
     {
+
+        $napi = Napi::count();
         $napi = new Napi;
         $napi->name        = $request->name;
         $napi->idJail      = $request->idJail;
@@ -34,7 +36,7 @@ class DataController extends Controller
         $napi->type        = $request->type;
         $napi->disposition = $request->disposition;
         $napi->pk          = $request->pk;
-        $napi->number_tpp  = $request->number_tpp;
+        $napi->number_tpp  = $napi + 1;
         $napi->date_tpp    = $request->date_tpp;
         $napi->status      = $request->status;
         $napi->description = $request->description;
