@@ -42,11 +42,23 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label>Nama PK</label>
-                                                <input type="text" name="pk" class="form-control">
+                                                <select class="form-control" name="idPk">
+                                                    @foreach ($pk as $datapk)
+                                                        <option value="{{ $datapk->id }}">
+                                                            {{ $datapk->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Jenis Litmas</label>
-                                                <input type="text" name="type" class="form-control">
+                                                <select class="form-control" name="idType">
+                                                    @foreach ($type as $dataType)
+                                                        <option value="{{ $dataType->id }}">
+                                                            {{ $dataType->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +66,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tanggal Disposisi</label>
-                                                <input type="date" class="form-control" name="disposition">
+                                                <input type="date" class="form-control" name="date_disposition">
                                             </div>
                                         </div>
                                         <div class="col">
@@ -67,6 +79,26 @@
                                             <div class="form-group">
                                                 <label>Tanggal TPP</label>
                                                 <input type="date" class="form-control" name="date_tpp">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tanggal Dikirim</label>
+                                                <input type="date" class="form-control" name="date_send">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tanggal Mulai</label>
+                                                <input type="date" class="form-control" name="date_start">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tanggal Selesai</label>
+                                                <input type="date" class="form-control" name="date_end">
                                             </div>
                                         </div>
                                     </div>
@@ -93,13 +125,16 @@
                                                     <option value="Dalam Pembimbingan">
                                                         Dalam Pembimbingan
                                                     </option>
+                                                    <option value="Selesai">
+                                                        Selesai
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="text-right">
+                                <div class="text-right pb-4 pr-4">
                                     <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                     <button class="btn btn-secondary" type="reset">Reset</button>
                                 </div>

@@ -16,14 +16,17 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tanggal Disposisi</th>
-                                                <th>Asal Permintaan</th>
                                                 <th>Nama Klien</th>
+                                                <th>Asal Lembaga</th>
                                                 <th>Kasus</th>
                                                 <th>Nama PK</th>
                                                 <th>Jenis Litmas</th>
+                                                <th>Tanggal Disposisi</th>
                                                 <th>No TPP</th>
                                                 <th>Tanggal TPP</th>
+                                                <th>Tanggal Dikirim</th>
+                                                <th>Tanggal Awal Bimbingan</th>
+                                                <th>Tanggal Pengakhiran</th>
                                                 <th>Keterangan</th>
                                                 <th>Status</th>
                                                 <th class="col-2">action</th>
@@ -33,14 +36,17 @@
                                             @foreach ($napi as $data)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $data->disposition }}</td>
-                                                    <td>{{ $data->jail->name }}</td>
                                                     <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->jail->name }}</td>
                                                     <td>{{ $data->case }}</td>
-                                                    <td>{{ $data->pk }}</td>
-                                                    <td>{{ $data->type }}</td>
+                                                    <td>{{ $data->pk->name }}</td>
+                                                    <td>{{ $data->type->name }}</td>
+                                                    <td>{{ $data->date_disposition }}</td>
                                                     <td>{{ $data->number_tpp }}</td>
                                                     <td>{{ $data->date_tpp }}</td>
+                                                    <td>{{ $data->date_send }}</td>
+                                                    <td>{{ $data->date_start }}</td>
+                                                    <td>{{ $data->date_end }}</td>
                                                     <td>{{ $data->description }}</td>
                                                     <td>{{ $data->status }}</td>
                                                     <td class="col-2">
@@ -125,13 +131,35 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Nama PK</label>
-                                            <input type="text" name="pk" class="form-control"
-                                                value="{{ $data->pk }}">
+                                            <select class="form-control" name="idPk">
+                                                @foreach ($pk as $datapk)
+                                                    @if ($datapk->id == $data->idJail)
+                                                        <option value="{{ $datapk->id }}" selected>
+                                                            {{ $datapk->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{ $datapk->id }}">
+                                                            {{ $datapk->name }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Jenis Litmas</label>
-                                            <input type="text" name="type" class="form-control"
-                                                value="{{ $data->type }}">
+                                            <select class="form-control" name="idType">
+                                                @foreach ($type as $dataType)
+                                                    @if ($dataType->id == $data->idJail)
+                                                        <option value="{{ $dataType->id }}" selected>
+                                                            {{ $dataType->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{ $dataType->id }}">
+                                                            {{ $dataType->name }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -139,8 +167,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tanggal Disposisi</label>
-                                            <input type="date" class="form-control" value="{{ $data->disposition }}"
-                                                name="disposition">
+                                            <input type="date" class="form-control"
+                                                value="{{ $data->date_disposition }}" name="date_disposition">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -155,6 +183,29 @@
                                             <label>Tanggal TPP</label>
                                             <input type="date" class="form-control" value="{{ $data->date_tpp }}"
                                                 name="date_tpp">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Tanggal Dikirim</label>
+                                            <input type="date" class="form-control" value="{{ $data->date_send }}"
+                                                name="date_send">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Tanggal Mulai</label>
+                                            <input type="date" class="form-control" value="{{ $data->date_start }}"
+                                                name="date_start">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Tanggal Selesai</label>
+                                            <input type="date" class="form-control" value="{{ $data->date_end }}"
+                                                name="date_end">
                                         </div>
                                     </div>
                                 </div>
@@ -183,6 +234,9 @@
                                                     <option value="Dalam Pembimbingan">
                                                         Dalam Pembimbingan
                                                     </option>
+                                                    <option value="Selesai">
+                                                        Selesai
+                                                    </option>
                                                 @elseif ($data->status == 'Diproses')
                                                     <option value="Diterima">
                                                         Diterima
@@ -195,6 +249,9 @@
                                                     </option>
                                                     <option value="Dalam Pembimbingan">
                                                         Dalam Pembimbingan
+                                                    </option>
+                                                    <option value="Selesai">
+                                                        Selesai
                                                     </option>
                                                 @elseif ($data->status == 'Terkirim')
                                                     <option value="Diterima">
@@ -209,6 +266,25 @@
                                                     <option value="Dalam Pembimbingan">
                                                         Dalam Pembimbingan
                                                     </option>
+                                                    <option value="Selesai">
+                                                        Selesai
+                                                    </option>
+                                                @elseif ($data->status == 'Selesai')
+                                                    <option value="Diterima">
+                                                        Diterima
+                                                    </option>
+                                                    <option value="Diproses">
+                                                        Diproses
+                                                    </option>
+                                                    <option value="Terkirim">
+                                                        Terkirim
+                                                    </option>
+                                                    <option value="Dalam Pembimbingan">
+                                                        Dalam Pembimbingan
+                                                    </option>
+                                                    <option value="Selesai" selected>
+                                                        Selesai
+                                                    </option>
                                                 @else
                                                     <option value="Diterima">
                                                         Diterima
@@ -221,6 +297,9 @@
                                                     </option>
                                                     <option value="Dalam Pembimbingan" selected>
                                                         Dalam Pembimbingan
+                                                    </option>
+                                                    <option value="Selesai">
+                                                        Selesai
                                                     </option>
                                                 @endif
                                             </select>

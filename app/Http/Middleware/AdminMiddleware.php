@@ -17,8 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role != "admin") {
-            return redirect()->to('logout');
+        $role = Auth::user()->role;
+        $uid  = Auth::user()->uid;
+        $value = $request->cookie('ebima');
+        if ($role != "admin" && $uid != $value) {
+            Auth::logout();
+            return redirect()->route('error')->with('alert', 'Device tidak terdaftar');
         }
         return $next($request);
     }

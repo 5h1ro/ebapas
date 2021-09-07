@@ -12,6 +12,11 @@ class ApinapiController extends Controller
     public function index()
     {
         $napi = Napi::all();
+        foreach ($napi as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
         if ($napi->isEmpty()) {
             return Response::json(array(
                 'success'   => true,
@@ -22,7 +27,7 @@ class ApinapiController extends Controller
             return Response::json(array(
                 'success'   => true,
                 'message'   => '',
-                'data'      => json_decode($napi),
+                'data'      => json_decode($napi)
             ));
         }
     }
@@ -62,6 +67,11 @@ class ApinapiController extends Controller
     public function search(Request $request)
     {
         $napi = Napi::where('name', 'LIKE', '%' . $request->name . '%')->get();
+        foreach ($napi as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
         if ($napi->isEmpty()) {
             return Response::json(array(
                 'success'   => true,
@@ -80,6 +90,11 @@ class ApinapiController extends Controller
     public function jail()
     {
         $jail = Jail::all();
+        foreach ($jail as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
         if ($jail->isEmpty()) {
             return Response::json(array(
                 'success'   => true,
@@ -99,6 +114,11 @@ class ApinapiController extends Controller
     {
         if ($id == " ") {
             $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
+            foreach ($napi as $data) {
+                $data->jail->name;
+                $data->type->name;
+                $data->pk->name;
+            };
             if ($napi->isEmpty()) {
                 return Response::json(array(
                     'success'   => true,
@@ -114,6 +134,11 @@ class ApinapiController extends Controller
             }
         } elseif ($name == " ") {
             $napi = Napi::where('idJail', '=', $id)->get();
+            foreach ($napi as $data) {
+                $data->jail->name;
+                $data->type->name;
+                $data->pk->name;
+            };
             if ($napi->isEmpty()) {
                 return Response::json(array(
                     'success'   => true,
@@ -129,6 +154,11 @@ class ApinapiController extends Controller
             }
         } else {
             $napi = Napi::where([['idJail', '=', $id], ['name', 'LIKE', '%' . $name . '%']])->get();
+            foreach ($napi as $data) {
+                $data->jail->name;
+                $data->type->name;
+                $data->pk->name;
+            };
             if ($napi->isEmpty()) {
                 return Response::json(array(
                     'success'   => true,

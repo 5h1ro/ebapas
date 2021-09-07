@@ -1,12 +1,6 @@
 @if (isset($napi))
     <div class="row">
-        <div class="col-12 col-sm-8 col-md-12 col-lg-4 hover-zoom mb-3">
-            <div class="col-8 col-sm-12 col-md-7 col-lg-12 image-klien">
-                <img class="img-fluid align-items-sm-center rounded-lg" src="{{ asset('img/user.png') }}"
-                    alt="investor">
-            </div>
-        </div>
-        <div class="col-12 col-sm-8 col-md-auto col-lg-8 col-xl-auto text-white">
+        <div class="col-12 col-sm-12 col-md-auto col-lg-12 col-xl-auto text-white">
             <table class="___class_+?38___">
                 <tbody>
                     <tr>
@@ -22,6 +16,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="text-left align-top">Asal Lembaga</td>
+                                        <td class="pl-4 align-top">:
+                                            <span class="ml-2"></span>
+                                        </td>
+                                        <td class="text-left align-top">{{ $napi->jail->name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td class="text-left align-top">Kasus</td>
                                         <td class="pl-4 align-top">:
                                             <span class="ml-2"></span>
@@ -33,31 +35,79 @@
                                         <td class="pl-4 align-top">:
                                             <span class="ml-2"></span>
                                         </td>
-                                        <td class="text-left align-top">{{ $napi->pk }}</td>
+                                        <td class="text-left align-top">{{ $napi->pk->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-left align-top">Asal Permintaan</td>
+                                        <td class="text-left align-top">Jenis</td>
                                         <td class="pl-4 align-top">:
                                             <span class="ml-2"></span>
                                         </td>
-                                        <td class="text-left align-top">{{ $napi->jail->name }}
-                                        </td>
+                                        <td class="text-left align-top">{{ $napi->type->name }}</td>
                                     </tr>
+
+                                    @if ($napi->status == 'Diproses' || $napi->status == 'Diterima' || $napi->status == 'terkirim' || $napi->status == 'Dalam Pembimbing' || $napi->status == 'Selesai')
+                                        <tr>
+                                            <td class="text-left align-top">Tanggal Disposisi</td>
+                                            <td class="pl-4 align-top">:
+                                                <span class="ml-2"></span>
+                                            </td>
+                                            <td class="text-left align-top">{{ $napi->date_disposition }}
+                                            </td>
+                                        </tr>
+                                    @else
+                                    @endif
                                     <tr>
-                                        <td class="text-left align-top">Tipe</td>
+                                        <td class="text-left align-top">Nomor TPP</td>
                                         <td class="pl-4 align-top">:
                                             <span class="ml-2"></span>
                                         </td>
-                                        <td class="text-left align-top">{{ $napi->type }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left align-top">Tanggal</td>
-                                        <td class="pl-4 align-top">:
-                                            <span class="ml-2"></span>
-                                        </td>
-                                        <td class="text-left align-top">{{ $napi->date_tpp }}
+                                        <td class="text-left align-top">{{ $napi->number_tpp }}
                                         </td>
                                     </tr>
+                                    @if ($napi->status == 'Diterima' || $napi->status == 'terkirim' || $napi->status == 'Dalam Pembimbing' || $napi->status == 'Selesai')
+                                        <tr>
+                                            <td class="text-left align-top">Tanggal Sidang TPP</td>
+                                            <td class="pl-4 align-top">:
+                                                <span class="ml-2"></span>
+                                            </td>
+                                            <td class="text-left align-top">{{ $napi->date_tpp }}
+                                            </td>
+                                        </tr>
+                                    @else
+                                    @endif
+                                    @if ($napi->status == 'terkirim' || $napi->status == 'Dalam Pembimbing' || $napi->status == 'Selesai')
+                                        <tr>
+                                            <td class="text-left align-top">Tanggal Dikirim</td>
+                                            <td class="pl-4 align-top">:
+                                                <span class="ml-2"></span>
+                                            </td>
+                                            <td class="text-left align-top">{{ $napi->date_send }}
+                                            </td>
+                                        </tr>
+                                    @else
+                                    @endif
+                                    @if ($napi->status == 'Dalam Pembimbing' || $napi->status == 'Selesai')
+                                        <tr>
+                                            <td class="text-left align-top">Tanggal Awal Bimbingan</td>
+                                            <td class="pl-4 align-top">:
+                                                <span class="ml-2"></span>
+                                            </td>
+                                            <td class="text-left align-top">{{ $napi->date_send }}
+                                            </td>
+                                        </tr>
+                                    @else
+                                    @endif
+                                    @if ($napi->status == 'Dalam Pembimbing' || $napi->status == 'Selesai')
+                                        <tr>
+                                            <td class="text-left align-top">Tanggal Pengakhiran</td>
+                                            <td class="pl-4 align-top">:
+                                                <span class="ml-2"></span>
+                                            </td>
+                                            <td class="text-left align-top">{{ $napi->date_end }}
+                                            </td>
+                                        </tr>
+                                    @else
+                                    @endif
                                     <tr>
                                         <td class="text-left align-top">Status</td>
                                         <td class="pl-4 align-top">:

@@ -21,11 +21,14 @@ class Napi extends Model
         'name',
         'idJail',
         'case',
-        'pk',
-        'type',
-        'disposition',
+        'idPk',
+        'idType',
+        'date_disposition',
         'number_tpp',
         'date_tpp',
+        'date_send',
+        'date_start',
+        'date_end',
         'status',
         'description'
     ];
@@ -33,5 +36,13 @@ class Napi extends Model
     public function jail()
     {
         return $this->belongsTo(Jail::class, 'idJail');
+    }
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'idType');
+    }
+    public function pk()
+    {
+        return $this->belongsTo(Pk::class, 'idPk');
     }
 }

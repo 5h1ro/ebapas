@@ -4,6 +4,8 @@ use App\Http\Controllers\ApinapiController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Admin\JailController;
+use App\Http\Controllers\Admin\PkController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Models\Jail;
@@ -54,7 +56,9 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::get('/error', function () {
-    return view('welcome');
+
+    $jail = Jail::all()->sortBy("name");
+    return view('index', compact('jail'));
 })->name('error');
 
 
@@ -69,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::get('cookie', [HomeController::class, 'getcookie']);
-        Route::get('admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
         Route::get('/data', [DataController::class, 'index'])->name('data');
         Route::get('/data/add', [DataController::class, 'add'])->name('data.add');
@@ -83,5 +87,18 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/jail/store', [JailController::class, 'store'])->name('jail.store');
         Route::get('/jail/delete/{id}', [JailController::class, 'delete'])->name('jail.delete');
         Route::post('/jail/update/{id}', [JailController::class, 'update'])->name('jail.update');
+
+
+        Route::get('/pk', [PkController::class, 'index'])->name('pk');
+        Route::get('/pk/add', [PkController::class, 'add'])->name('pk.add');
+        Route::post('/pk/store', [PkController::class, 'store'])->name('pk.store');
+        Route::get('/pk/delete/{id}', [PkController::class, 'delete'])->name('pk.delete');
+        Route::post('/pk/update/{id}', [PkController::class, 'update'])->name('pk.update');
+
+        Route::get('/type', [TypeController::class, 'index'])->name('type');
+        Route::get('/type/add', [TypeController::class, 'add'])->name('type.add');
+        Route::post('/type/store', [TypeController::class, 'store'])->name('type.store');
+        Route::get('/type/delete/{id}', [TypeController::class, 'delete'])->name('type.delete');
+        Route::post('/type/update/{id}', [TypeController::class, 'update'])->name('type.update');
     });
 });

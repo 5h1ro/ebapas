@@ -47,9 +47,11 @@
                     <!-- Feature Title -->
                     <h2>Download Aplikasi Si-Bima <a href="#"> Playstore</a></h2>
                     <!-- Feature Description -->
-                    <p class="desc">Aplikasi pelayanan informasi digital BAPAS untuk memudahkan
+                    <p class="desc">Aplikasi pelayanan informasi digital Balai Pemasyarakatan Kelas II Madiun
+                        untuk
+                        memudahkan
                         dalam
-                        pencarian informasi tentang narapidana, serta untuk pengecekan status narapidana</p>
+                        pencarian informasi tentang narapidana, serta untuk pengecekan status warga binaan</p>
                     <p><img src="{{ asset('img/app/google-play.jpg') }}" width="150px" alt="Google Play">
                     </p>
                 </div>
