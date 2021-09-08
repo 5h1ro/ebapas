@@ -51,7 +51,8 @@
                         untuk
                         memudahkan
                         dalam
-                        pencarian informasi tentang narapidana, serta untuk pengecekan status warga binaan</p>
+                        pencarian informasi tentang klien pemasyarakatan, serta untuk pengecekan status klien
+                        pemasyarakatan</p>
                     <p><img src="{{ asset('img/app/google-play.jpg') }}" width="150px" alt="Google Play">
                     </p>
                 </div>

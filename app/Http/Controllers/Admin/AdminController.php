@@ -21,11 +21,13 @@ class AdminController extends Controller
             $dikirim = Napi::where('status', 'Terkirim')->count();
             $diproses = Napi::where('status', 'Diproses')->count();
             $diterima = Napi::where('status', 'Diterima')->count();
+            $diselesai = Napi::where('status', 'Selesai')->count();
             $bimbing = number_format((float)($dibimbing / $napi) * 100, 2, '.', '');
             $kirim = number_format((float)($dikirim / $napi) * 100, 2, '.', '');
             $proses = number_format((float)($diproses / $napi) * 100, 2, '.', '');
             $terima = number_format((float)($diterima / $napi) * 100, 2, '.', '');
-            return view('admin.index', compact('user', 'bimbing', 'kirim', 'proses', 'terima', 'dibimbing', 'dikirim', 'diproses', 'diterima'));
+            $selesai = number_format((float)($diselesai / $napi) * 100, 2, '.', '');
+            return view('admin.index', compact('user', 'bimbing', 'kirim', 'proses', 'terima', 'selesai', 'dibimbing', 'dikirim', 'diproses', 'diterima', 'diselesai'));
         } else {
             Auth::logout();
             return redirect()->route('error')->with('alert', 'Device tidak terdaftar');

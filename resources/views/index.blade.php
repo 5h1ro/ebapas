@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row align-items-start my-5">
                 <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 order-1 order-md-2 text-center text-md-left w-100">
-                    <h1 class="text-white font-weight-bold mb-3 ">Layanan Info Status Warga Binaan</h1>
+                    <h1 class="text-white font-weight-bold mb-3 ">Layanan Info Status Klien Pemasyarakatan</h1>
                     <div class="row">
                         <div class="col-12">
                             <input class="form-control main" type="text" placeholder="Masukan Nama Client" required=""

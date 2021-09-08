@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Admin\JailController;
 use App\Http\Controllers\Admin\PkController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
@@ -100,5 +101,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/type/store', [TypeController::class, 'store'])->name('type.store');
         Route::get('/type/delete/{id}', [TypeController::class, 'delete'])->name('type.delete');
         Route::post('/type/update/{id}', [TypeController::class, 'update'])->name('type.update');
+
+        Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+        Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
     });
 });

@@ -27,7 +27,7 @@
                     class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
                 <div class="dropdown-title">Hello Admin</div>
-                </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+                </a> <a href="{{ route('setting') }}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                     Settings
                 </a>
                 <div class="dropdown-divider"></div>

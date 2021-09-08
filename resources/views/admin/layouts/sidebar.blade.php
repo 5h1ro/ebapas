@@ -30,7 +30,7 @@
             </li>
 
             <li class="dropdown">
-                <a class="menu-toggle nav-link has-dropdown"><i data-feather="home"></i><span>PK</span></a>
+                <a class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>PK</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('pk') }}">Data PK</a></li>
                     <li><a class="nav-link" href="{{ route('pk.add') }}">Tambah Data PK</a></li>
@@ -38,7 +38,7 @@
             </li>
 
             <li class="dropdown">
-                <a class="menu-toggle nav-link has-dropdown"><i data-feather="home"></i><span>Jenis</span></a>
+                <a class="menu-toggle nav-link has-dropdown"><i data-feather="list"></i><span>Jenis</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('type') }}">Data Jenis</a></li>
                     <li><a class="nav-link" href="{{ route('type.add') }}">Tambah Data Jenis</a></li>
