@@ -6,6 +6,7 @@ use App\Models\Jail;
 use App\Models\Napi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use App\Models\NewCustomer;
 
 class ApinapiController extends Controller
 {
@@ -110,68 +111,92 @@ class ApinapiController extends Controller
         }
     }
 
-    public function getsearch($id, $name)
+    public function getsearch($name)
     {
-        if ($id == " ") {
-            $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
-            foreach ($napi as $data) {
-                $data->jail->name;
-                $data->type->name;
-                $data->pk->name;
-            };
-            if ($napi->isEmpty()) {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => []
-                ), 404);
-            } else {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => json_decode($napi),
-                ));
-            }
-        } elseif ($name == " ") {
-            $napi = Napi::where('idJail', '=', $id)->get();
-            foreach ($napi as $data) {
-                $data->jail->name;
-                $data->type->name;
-                $data->pk->name;
-            };
-            if ($napi->isEmpty()) {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => []
-                ), 404);
-            } else {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => json_decode($napi),
-                ));
-            }
+        $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
+        foreach ($napi as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
+        if ($napi->isEmpty()) {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
+            ), 404);
         } else {
-            $napi = Napi::where([['idJail', '=', $id], ['name', 'LIKE', '%' . $name . '%']])->get();
-            foreach ($napi as $data) {
-                $data->jail->name;
-                $data->type->name;
-                $data->pk->name;
-            };
-            if ($napi->isEmpty()) {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => []
-                ), 404);
-            } else {
-                return Response::json(array(
-                    'success'   => true,
-                    'message'   => '',
-                    'data'      => json_decode($napi),
-                ));
-            }
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($napi),
+            ));
+        }
+    }
+
+    public function getsearch2($id)
+    {
+
+        $napi = Napi::where('idJail', '=', $id)->get();
+        foreach ($napi as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
+        if ($napi->isEmpty()) {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
+            ), 404);
+        } else {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($napi),
+            ));
+        }
+    }
+
+    public function getsearch3($id, $name)
+    {
+
+        $napi = Napi::where([['idJail', '=', $id], ['name', 'LIKE', '%' . $name . '%']])->get();
+        foreach ($napi as $data) {
+            $data->jail->name;
+            $data->type->name;
+            $data->pk->name;
+        };
+        if ($napi->isEmpty()) {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
+            ), 404);
+        } else {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($napi),
+            ));
+        }
+    }
+
+    public function customer()
+    {
+        $customer = NewCustomer::all();
+        if ($customer->isEmpty()) {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => []
+            ), 404);
+        } else {
+            return Response::json(array(
+                'success'   => true,
+                'message'   => '',
+                'data'      => json_decode($customer)
+            ));
         }
     }
 }
