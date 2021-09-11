@@ -7,6 +7,7 @@ use App\Models\Napi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Models\NewCustomer;
+use Carbon\Carbon;
 
 class ApinapiController extends Controller
 {
@@ -14,6 +15,11 @@ class ApinapiController extends Controller
     {
         $napi = Napi::all();
         foreach ($napi as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -23,7 +29,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -69,6 +75,11 @@ class ApinapiController extends Controller
     {
         $napi = Napi::where('name', 'LIKE', '%' . $request->name . '%')->get();
         foreach ($napi as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -78,7 +89,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -92,6 +103,11 @@ class ApinapiController extends Controller
     {
         $jail = Jail::all();
         foreach ($jail as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -101,7 +117,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -115,6 +131,11 @@ class ApinapiController extends Controller
     {
         $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->get();
         foreach ($napi as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -124,7 +145,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -136,9 +157,13 @@ class ApinapiController extends Controller
 
     public function getsearch2($id)
     {
-
         $napi = Napi::where('idJail', '=', $id)->get();
         foreach ($napi as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -148,7 +173,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -163,6 +188,11 @@ class ApinapiController extends Controller
 
         $napi = Napi::where([['idJail', '=', $id], ['name', 'LIKE', '%' . $name . '%']])->get();
         foreach ($napi as $data) {
+            $data->date_disposition = Carbon::parse($data->date_disposition)->format('d F Y');
+            $data->date_tpp = Carbon::parse($data->date_tpp)->format('d F Y');
+            $data->date_send = Carbon::parse($data->date_send)->format('d F Y');
+            $data->date_start = Carbon::parse($data->date_start)->format('d F Y');
+            $data->date_end = Carbon::parse($data->date_end)->format('d F Y');
             $data->jail->name;
             $data->type->name;
             $data->pk->name;
@@ -172,7 +202,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
@@ -190,7 +220,7 @@ class ApinapiController extends Controller
                 'success'   => true,
                 'message'   => '',
                 'data'      => []
-            ), 404);
+            ));
         } else {
             return Response::json(array(
                 'success'   => true,
