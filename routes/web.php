@@ -34,7 +34,7 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', [GuestController::class, 'index'])->name('index');
-Route::get('/load/name={name}&jail={id}', [GuestController::class, 'load']);
+Route::get('/load/name={name}&type={id}', [GuestController::class, 'load']);
 
 Route::get('/regis', function (Request $request) {
     $random = Str::random(10);

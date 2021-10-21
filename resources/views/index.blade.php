@@ -5,9 +5,9 @@
     <script type="text/javascript">
         function load() {
             var name = document.getElementById("clientname").value;
-            var idJail = document.getElementById("idJail").value;
+            var idType = document.getElementById("idType").value;
             nameFix = encodeURIComponent(name.trim())
-            $('#dataClient').load('/load/name=' + nameFix + '&jail=' + idJail).fadeIn("slow");
+            $('#dataClient').load('/load/name=' + nameFix + '&type=' + idType).fadeIn("slow");
         }
     </script>
     <section class="section gradient-banner">
@@ -59,9 +59,9 @@
                     <div class="row my-3">
                         <div class="col-xl-5 mb-2 form-cols">
                             <div class="form-group">
-                                <select class="form-control" id="idJail" id="idJail">
+                                <select class="form-control" name="idType" id="idType">
                                     <option value="0" selected>Semua</option>
-                                    @foreach ($jail as $data)
+                                    @foreach ($type as $data)
                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
                                 </select>

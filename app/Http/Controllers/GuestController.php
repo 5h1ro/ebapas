@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jail;
 use App\Models\Napi;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -11,17 +12,17 @@ class GuestController extends Controller
 
     public function index()
     {
-        $jail = Jail::all()->sortBy("name");
-        return view('index', compact('jail'));
+        $type = Type::all()->sortBy("name");
+        return view('index', compact('type'));
     }
 
-    public function load($name, $idJail)
+    public function load($name, $idType)
     {
-        if ($idJail == "0") {
+        if ($idType == "0") {
             $napi = Napi::where('name', 'LIKE', '%' . $name . '%')->first();
             return view('client.client', compact('napi'));
         } else {
-            $napi = Napi::where([['idJail', '=', $idJail], ['name', 'LIKE', '%' . $name . '%']])->first();
+            $napi = Napi::where([['idType', '=', $idType], ['name', 'LIKE', '%' . $name . '%']])->first();
             return view('client.client', compact('napi'));
         }
     }
